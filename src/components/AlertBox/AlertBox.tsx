@@ -1,6 +1,3 @@
-import React from "react";
-//Import React to enable JSX syntax and React types
-
 // Import AlertBoxProps interface and AlertTypes from centralized types file
 import type {AlertBoxProps} from '../../types/index'
 
