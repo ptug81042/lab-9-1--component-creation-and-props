@@ -17,3 +17,16 @@ test('displays product name and price', () => {
     expect(screen.getByText('Test Product')).toBeTruthy();
     expect(screen.getByText('29.99')).toBeTruthy();
 });
+
+// Test 2: Conditionally render description
+test('shows description when showDescription is true', () => {
+    render(<ProductDisplay product={mockProduct} showDescription={true} />);
+
+    expect(screen.getByText('This is a test product.')).toBeTruthy();
+})
+
+test('hides description when showDescription is false', () => {
+    render(<ProductDisplay product={mockProduct} showDescription={false} />);
+
+    expect(screen.queryByText('This is a test product.')).toBeNull();
+});
