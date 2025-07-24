@@ -1,4 +1,4 @@
-# 🧱 Reusable Component Library – Lab 9.1
+# Reusable Component Library – Lab 9.1
 
 A small component library built with React and TypeScript, showcasing how to build flexible, reusable UI components with props, composition, and event handling.
 
