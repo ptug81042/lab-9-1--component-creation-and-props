@@ -25,3 +25,16 @@ test('renders children inside alert box', () => {
     // Check that child element is rendered inside the component
     expect(screen.getByText('Extra details')).toBeTruthy();
 })
+
+// Test 3: onClose callback is triggered on close button click
+test('calls onClose handler when close button is clicked', () => {
+    const handleClose = jest.fn();
+
+    render(<AlertBox type='error' message='Error!' onClose={handleClose} />)
+
+    // Simulate click on close button
+    fireEvent.click(screen.getByRole('button', { name: /close alert/i }));
+
+    // Ensure the callback was triggered
+    expect(handleClose).toHaveBeenCalledTimes(1);
+})
