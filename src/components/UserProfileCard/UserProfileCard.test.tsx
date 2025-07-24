@@ -16,3 +16,11 @@ test('renders name, email, and role when flags are true', () => {
     expect(screen.getByText('alice@example.com')).toBeTruthy();
     expect(screen.getByText('Developer')).toBeTruthy();
 });
+
+// Test 2: Conditionally hide email and role
+test('hides email and role when showEmail and showRole are false', () => {
+    render(<UserProfileCard user={mockUser} showEmail={false} showRole={false} />);
+
+    expect(screen.queryByText('alice@example.com')).toBeNull();
+    expect(screen.queryByText('Developer')).toBeNull();
+})
