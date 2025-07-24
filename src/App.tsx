@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// Import global styles
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+// Import all reusable components
+import UserProfileCard from './components/UserProfileCard/UserProfileCard';
+import ProductDisplay from './components/ProductDisplay/ProductDisplay';
+import AlertBox from './components/AlertBox/AlertBox';
 
+// Top-level functional component: acts as the main container for the entire UI
+function App() {
+  // Simulated user data, usually fetched from an API or stored in context
+  const user = {
+    id: 'u123',
+    name: 'Parsa Emran',
+    email: 'parsa@example.com',
+    role: 'Full Stack Developer'
+  };
+
+  // Simulated list of products - this could easily come from a prop, API, or global state
+  const products = [
+    {
+      id: 'p1',
+      name: 'Bluetooth Speaker',
+      price: 49.99,
+      description: 'Loud and clear sound with deep bass.',
+      imageUrl: '',
+      inStock: true
+    },
+    {
+      id: 'p2',
+      name: 'Noise-Cancelling Headphones',
+      price: 129.99,
+      description: 'Blocks out the world and lets you focus.',
+      imageUrl: '',
+      inStock: false,
+    }
+  ];
+
+  // Handler function passed down as a prop - demonstrates upward communication
+  const handleEditProfile = (userId: string) => {
+    alert(`Edit profile for user ID: ${userId}`);
+  };
+
+  // Another callback handler - triggered when a user adds a product to cart
+  const handleAddToCart = (productId: string) => {
+    alert(`Added product ID: ${productId} to cart`);
+  };
+  
+  // UI Structure + component composition
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {/* Top Notification / ALert Layer */}
+      <AlertBox type="info" message="Welcome back, Parsa!">
+        <span>Don't forget to update your profile if anything's changed.</span>
+      </AlertBox>
+
+      {/* User profile section - receives full user object + callback handler */}
+      <UserProfileCard
+        user={user}
+        onEdit={handleEditProfile}
+        showEmail={true}
+        showRole={true}
+      />
+
+      {/* Products list - maps over multiple items and renders nested components */}
+      <div className="product-section">
+        <h2>Featured Products</h2>
+
+        {/* Loop through each product and render a ProductDisplay component */}
+        {products.map((product) => (
+          <ProductDisplay
+            key={product.id}
+            product={product}
+            showDescription={true}
+            onAddToCart={handleAddToCart}
+          />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
 
+// Export default component so Vite/React can render it
 export default App

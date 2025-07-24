@@ -12,49 +12,51 @@ function ProductDisplay({
     const { id, name, price, description, imageUrl, inStock } = product;
 
     return (
-        // Container div for teh product display card
+        // Container div for the product display card
         <div className="product-display">
 
             {/* Display product image if URL is provided */}
             {imageUrl ? (
                 <img 
-                    src={imageUrl} // Image source
-                    alt={name} // Alt text for accessibility
-                    className="product-image" // Styling class for product image
+                    src={imageUrl}
+                    alt={name}
+                    className="product-image"
                 />
             ) : (
-                // Placeholder div shown when no image URL is available
                 <div className="image-placeholder">No Image</div>
             )}
 
             {/* Product name heading */}
             <h2 className="product-name">{name}</h2>
 
-            {/* Price shown with 2 decimals and dollar sign */}
+            {/* Price with two decimal places */}
             <p className="product-price">${price.toFixed(2)}</p>
 
-            {/* Continually show product description if requested */}
+            {/* Show description only if requested */}
             {showDescription && (
                 <p className="product-description">{description}</p>
             )}
 
-            {/* Conditionally show stock status text and style */}
+            {/* Conditional stock status message */}
             {showStockStatus && (
-                <p className={`stock-status ${inStock ? 'in-stock' : 'out-of-stock'}`}>{inStock ? 'In stock' : 'Out of stock'}</p>
+                <p className={`stock-status ${inStock ? 'in-stock' : 'out-of-stock'}`}>
+                    {inStock ? 'In stock' : 'Out of stock'}
+                </p>
             )}
 
-            {/* Conditionally render Add to Cart button if onAddToCart callback is present */}
+            {/* Add to Cart button logic */}
             {onAddToCart && (
                 <button
-                    className="add-to-cart-button" // Button styling
-                    onClick={() => onAddToCart(id)} // Trigger callback with product ID
-                    aria-label={`Add ${name} to cart`} // Accessibility label
+                    className={`add-to-cart-button ${!inStock ? 'disabled' : ''}`} // Optional CSS class for styling
+                    onClick={() => onAddToCart(id)}
+                    aria-label={`Add ${name} to cart`}
+                    disabled={!inStock} // 👈 disable button if out of stock
                 >
                     Add to Cart
                 </button>
             )}
 
-            {/* Render any extra children passed to component */}
+            {/* Render extra children content */}
             {children && <div className="product-extra">{children}</div>}
         </div>
     );
