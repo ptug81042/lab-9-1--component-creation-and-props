@@ -30,3 +30,14 @@ test('hides description when showDescription is false', () => {
 
     expect(screen.queryByText('This is a test product.')).toBeNull();
 });
+
+// Test 3: Handles Add to Cart clicks
+test('calls onAddToCart when Add to Cart button is clicked', () => {
+    const handleAdd = jest.fn();
+
+    render(<ProductDisplay product={mockProduct} onAddToCart={handleAdd} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /add test product to cart/i }));
+
+    expect(handleAdd).toHaveBeenCalledWith('1');
+})
