@@ -24,3 +24,14 @@ test('hides email and role when showEmail and showRole are false', () => {
     expect(screen.queryByText('alice@example.com')).toBeNull();
     expect(screen.queryByText('Developer')).toBeNull();
 })
+
+// Test 3: onEdit triggers when Edit button is clicked
+test('calls onEdit with user ID when Edit is clicked', () => {
+    const handleEdit = jest.fn();
+
+    render(<UserProfileCard user={mockUser} onEdit={handleEdit} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /edit profile of alice doe/i }));
+
+    expect(handleEdit).toHaveBeenCalledWith('u123');
+});
