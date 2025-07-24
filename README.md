@@ -1,69 +1,64 @@
-# React + TypeScript + Vite
+# 🧱 Reusable Component Library – Lab 9.1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small component library built with React and TypeScript, showcasing how to build flexible, reusable UI components with props, composition, and event handling.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Components Overview
 
-## Expanding the ESLint configuration
+### UserProfileCard
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Displays user details such as name, email, and role. It supports optional visibility toggles for email and role, and includes an Edit button that triggers a callback with the user’s ID.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### ProductDisplay
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Renders a product’s name, price, description, and stock status. It includes an Add to Cart button that is disabled when the product is out of stock. Supports conditional display of description and stock info.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### AlertBox
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Shows styled alert messages for different types like info, success, and error. Accepts an optional close handler and can display additional child content.
+
+---
+
+## Component Composition
+
+The app demonstrates how to:
+
+- Pass props between components (like user or product objects)
+- Nest components inside each other (e.g., children inside `AlertBox`)
+- Communicate from child to parent using callback functions (e.g., onEdit, onAddToCart)
+- Dynamically render UI based on prop values (e.g., conditional rendering)
+
+---
+
+## Design Reflections
+
+- **Handling Optional Props**: Used default values and conditional logic to safely render optional content.
+- **Interface Design**: Focused on clarity, reusability, and real-world flexibility when defining TypeScript interfaces for props.
+- **Type Safety**: Enforced strict typing across components, ensuring props and handlers match expected shapes.
+- **Component Composition**: Carefully structured to keep components isolated but interoperable, using props and children as primary tools.
+
+---
+
+## Testing
+
+- Used Jest and React Testing Library
+- Validated that elements render properly and react to user interactions
+- Ensured accessibility by querying with roles and labels
+
+---
+
+## Tech Stack
+
+- React (with functional components)
+- TypeScript
+- Vite (for fast development)
+- Jest & React Testing Library (for unit testing)
+
+---
+
+**Made by Parsa Emran**
