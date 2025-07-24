@@ -13,3 +13,15 @@ test('renders alert with message and type', () => {
   // Check for dynamic class based on alert type
   expect(screen.getByRole('alert').className).toContain('alert-success');
 });
+
+// Test 2: Renders children when provided
+test('renders children inside alert box', () => {
+    render(
+        <AlertBox type='info' message='info alert'>
+            <span>Extra Details</span>
+        </AlertBox>
+    );
+
+    // Check that child element is rendered inside the component
+    expect(screen.getByText('Extra details')).toBeTruthy();
+})
