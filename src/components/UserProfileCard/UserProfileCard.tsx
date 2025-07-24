@@ -27,7 +27,7 @@ function UserProfileCard({
             <div className='avatar-callback'>{name[0]}</div>
         )}
 
-        (/* Container for textual user details */)
+        {/* Container for textual user details */}
         <div className='user-details'>
             {/* Always display user's full name */}
             <h2 className="user-name">{name}</h2>

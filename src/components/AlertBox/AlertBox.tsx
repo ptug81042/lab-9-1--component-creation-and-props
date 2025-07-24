@@ -5,7 +5,7 @@ import type {AlertBoxProps} from '../../types/index'
 function AlertBox({ type, message, onClose, children }: AlertBoxProps) {
     return (
         // Root alert container with dynamic class for styling by type
-        <div className={`alert alert-${type}`}>
+        <div className={`alert alert-${type}`} role="alert">
             
             {/* Display the main alert message text */}
             <span>{message}</span>

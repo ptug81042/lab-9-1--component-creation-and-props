@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ProductDisplay from './ProductDisplay';
 
@@ -15,7 +16,8 @@ test('displays product name and price', () => {
     render(<ProductDisplay product={mockProduct} />);
 
     expect(screen.getByText('Test Product')).toBeTruthy();
-    expect(screen.getByText('29.99')).toBeTruthy();
+    expect(screen.getByText('$29.99')).toBeTruthy();
+
 });
 
 // Test 2: Conditionally render description

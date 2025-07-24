@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import AlertBox from './AlertBox';
 
@@ -22,7 +23,7 @@ test('renders children inside alert box', () => {
     );
 
     // Check that child element is rendered inside the component
-    expect(screen.getByText('Extra details')).toBeTruthy();
+    expect(screen.getByText('Extra Details')).toBeTruthy();
 })
 
 // Test 3: onClose callback is triggered on close button click
