@@ -4,8 +4,8 @@ A small component library built with React and TypeScript, showcasing how to bui
 
 ## 🚀 Live Demo
 
-Check out the live version of the app on Netlify:  
-🔗 [View Deployment](https://rococo-biscotti-d45a59.netlify.app/)
+Experience the live version of this Character Counter app deployed on Netlify:  
+[https://rococo-biscotti-d45a59.netlify.app](https://rococo-biscotti-d45a59.netlify.app)
 
 ---
 
